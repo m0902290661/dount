@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解一元二次方程式</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        input {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        #instructions {
+            display: none;
+            text-align: left;
+        }
+    </style>
+    <script>
+        function solveQuadratic() {
+            var a = parseFloat(document.getElementById('a').value);
+            var b = parseFloat(document.getElementById('b').value);
+            var c = parseFloat(document.getElementById('c').value);
+
+            var discriminant = b * b - 4 * a * c;
+
+            if (discriminant > 0) {
+                var root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                var root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                document.getElementById('result').innerHTML = '方程的兩個實根分別為：' + root1.toFixed(2) + ' 和 ' + root2.toFixed(2);
+            } else if (discriminant === 0) {
+                var root = -b / (2 * a);
+                document.getElementById('result').innerHTML = '方程有一個實根：' + root.toFixed(2);
+            } else {
+                document.getElementById('result').innerHTML = '方程沒有實根';
+            }
+        }
+
+        function showInstructions() {
+            var instructions = document.getElementById('instructions');
+            instructions.style.display = 'block';
+        }
+
+        function hideInstructions() {
+            var instructions = document.getElementById('instructions');
+            instructions.style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <h1>解一元二次方程式</h1>
+    <button onclick="solveQuadratic()">計算</button>
+    <button onclick="showInstructions()">使用說明</button>
+    <div id="instructions">
+        <h2>使用說明</h2>
+        <p>請在上方輸入框中輸入方程的係數（a、b、c），然後點擊「計算」按鈕以解一元二次方程。</p>
+        <p>方程的解將顯示在下方結果框中。</p>
+        <button onclick="hideInstructions()">關閉</button>
+    </div>
+    <p>請輸入方程的係數：</p>
+    <label for="a">a：</label>
+    <input type="text" id="a" placeholder="請輸入a的值"><br>
+    <label for="b">b：</label>
+    <input type="text" id="b" placeholder="請輸入b的值"><br>
+    <label for="c">c：</label>
+    <input type="text" id="c" placeholder="請輸入c的值"><br>
+    <p id="result"></p>
+</body>
+</html>
